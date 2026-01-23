@@ -18,12 +18,12 @@ MonoBehaviour:
   preview: {fileID: 5298933525746655489}
   dependencies:
   - dependency: {fileID: 2800000, guid: 32b23d5d74f3aee4f9364e34e2f59379, type: 3}
-    instantiationMode: 1
+    instantiationMode: 0
   - dependency: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
-    instantiationMode: 1
+    instantiationMode: 0
   - dependency: {fileID: 2100000, guid: b9ab71015c21d264793b84d1c766c781, type: 2}
     instantiationMode: 0
-  templatePipeline: {fileID: 0}
+  templatePipeline: {fileID: 11500000, guid: 42fed6b0bfdd87a49824fcd1e2c88107, type: 3}
   badge: {fileID: 0}
   addToDefaults: 0
 --- !u!28 &5298933525746655489
