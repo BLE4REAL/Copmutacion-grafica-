@@ -17,14 +17,22 @@ MonoBehaviour:
   description: neutral colors samplescene
   preview: {fileID: 5298933525746655489}
   dependencies:
+  - dependency: {fileID: 919132149155446097, guid: 885388cdbf454334593136cd31d2ff5a, type: 3}
+    instantiationMode: 0
   - dependency: {fileID: 2100000, guid: 066a190553e25d04bb21e2545d7c55c5, type: 2}
+    instantiationMode: 0
+  - dependency: {fileID: 2100000, guid: f16121100cdfa584499f1e76cc2ae7e9, type: 2}
     instantiationMode: 0
   - dependency: {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
     instantiationMode: 0
   - dependency: {fileID: 2800000, guid: 32b23d5d74f3aee4f9364e34e2f59379, type: 3}
     instantiationMode: 1
+  - dependency: {fileID: 2100000, guid: e438c6b10bd16344ca0ba64230e4856d, type: 2}
+    instantiationMode: 0
   - dependency: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
     instantiationMode: 1
+  - dependency: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+    instantiationMode: 0
   - dependency: {fileID: 2100000, guid: b9ab71015c21d264793b84d1c766c781, type: 2}
     instantiationMode: 0
   - dependency: {fileID: 2800000, guid: 1ec78d772ec25e14d8932ef85ddd228e, type: 3}
