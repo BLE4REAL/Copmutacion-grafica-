@@ -17,17 +17,29 @@ MonoBehaviour:
   description: neutral colors samplescene
   preview: {fileID: 5298933525746655489}
   dependencies:
+  - dependency: {fileID: 2100000, guid: a11e7ab8c72162d459b97690a921ae3d, type: 2}
+    instantiationMode: 0
   - dependency: {fileID: 919132149155446097, guid: 885388cdbf454334593136cd31d2ff5a, type: 3}
     instantiationMode: 0
   - dependency: {fileID: 2100000, guid: 066a190553e25d04bb21e2545d7c55c5, type: 2}
     instantiationMode: 0
   - dependency: {fileID: 2100000, guid: f16121100cdfa584499f1e76cc2ae7e9, type: 2}
     instantiationMode: 0
+  - dependency: {fileID: 2800000, guid: 42b0e2c8d4335534c971249a665f933b, type: 3}
+    instantiationMode: 0
   - dependency: {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
     instantiationMode: 0
   - dependency: {fileID: 2800000, guid: 32b23d5d74f3aee4f9364e34e2f59379, type: 3}
     instantiationMode: 1
   - dependency: {fileID: 2100000, guid: e438c6b10bd16344ca0ba64230e4856d, type: 2}
+    instantiationMode: 0
+  - dependency: {fileID: 2100000, guid: d646049cac9041b41ac04142b5f266f4, type: 2}
+    instantiationMode: 0
+  - dependency: {fileID: 2100000, guid: d1f554e4e5ce25e40830406442068e73, type: 2}
+    instantiationMode: 0
+  - dependency: {fileID: 2800000, guid: 74c29f51e8af9bc4490aaee65253237c, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 2800000, guid: ddad898ccd5f966459f88e886ad6553e, type: 3}
     instantiationMode: 0
   - dependency: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
     instantiationMode: 1
