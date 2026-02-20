@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_VFX_SlashHard
+  m_Name: M_VFX_SlashHard 2
   m_Shader: {fileID: -6465566751694194690, guid: 33371a0b453fb70418b63320e8c6252a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -28,7 +28,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 0e5c003d44d2d3946b84505a0a6776c3, type: 3}
+        m_Texture: {fileID: 2800000, guid: ecae8ed59d002de4e8f3cffb4ee8281b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
