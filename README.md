@@ -1,3 +1,5 @@
+# Videos de ejercicio estan en main, trabajo esta en branch Tarea_Slash
+
 ### Slash de Esteban:
 
 ![Tercer Slash Juan Esteban Araujo](https://github.com/user-attachments/assets/632777d8-bedc-4946-9743-8557f4cc6f4d)
