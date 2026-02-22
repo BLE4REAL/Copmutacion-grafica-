@@ -133,7 +133,7 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 4.2370954, g: 4.2370954, b: 4.2370954, a: 1}
+    - _Color: {r: 11.181761, g: 11.181761, b: 11.181761, a: 1}
     - _EmissionColor: {r: 1.4773731, g: 1.4773731, b: 1.4773731, a: 1}
     - _Soft_Particle: {r: 0, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
