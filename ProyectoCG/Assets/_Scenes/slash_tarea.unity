@@ -163,6 +163,8 @@ PlayableDirector:
     - f71f9287868ae9345927cb6f7262efc9: {fileID: 709584399}
     - 209fa7c25b06ffb4bbf28388df39bb4d: {fileID: 315114083}
     - d7c657b9fc2628d4e865705c9a8512f3: {fileID: 315114083}
+    - 62813145ec1f22b4086784df8448d9f5: {fileID: 1454859666}
+    - b334966ab358b1541a053c8e1682513b: {fileID: 1454859666}
     - 1aa292cd032e223418c3997dc8d4f65c: {fileID: 804965086}
     - e4817e99fb048cf47816cb8576ea9301: {fileID: 709584399}
     - 1dd9082ddc0d55444af184cf1a20a41b: {fileID: 0}
@@ -5133,7 +5135,7 @@ GameObject:
   - component: {fileID: 315114085}
   - component: {fileID: 315114084}
   m_Layer: 0
-  m_Name: Estela_Tarea_Padre
+  m_Name: Estela_Tarea_Padre_Esteban
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5235,7 +5237,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -5292,7 +5294,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 0
+  randomSeed: 9972
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10234,7 +10236,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -10291,7 +10293,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 0
+  randomSeed: 2112
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10469,7 +10471,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 10
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -11279,8 +11281,8 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0.8809128
-          value: 0
+          time: 0.6307602
+          value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -11289,7 +11291,7 @@ ParticleSystem:
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 1
+          value: 0
           inSlope: 1.093991
           outSlope: 1.093991
           tangentMode: 0
@@ -15100,7 +15102,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -15157,7 +15159,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 0
+  randomSeed: 9973
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -16024,7 +16026,7 @@ ParticleSystem:
     m_BurstCount: 0
     m_Bursts: []
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       serializedVersion: 2
       minMaxState: 1
@@ -16035,21 +16037,21 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
+          value: 1
           inSlope: 0
-          outSlope: 1
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 0
+          time: 0.06587601
+          value: 0
+          inSlope: -0.35721952
+          outSlope: -0.35721952
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0.21490353
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -16088,21 +16090,21 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
+          value: 1
           inSlope: 0
-          outSlope: 1
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 0
+          time: 0.99468994
+          value: 0
+          inSlope: -0.3406906
+          outSlope: -0.3406906
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0.2026857
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -16140,22 +16142,22 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: 0
+          time: 0.015968323
+          value: 1
           inSlope: 0
-          outSlope: 1
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 0
+          time: 0.475708
+          value: 0
+          inSlope: -0.27895826
+          outSlope: -0.27895826
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0.19134553
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -17733,7 +17735,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 1
+    enabled: 0
     strength:
       serializedVersion: 2
       minMaxState: 0
@@ -29690,7 +29692,7 @@ GameObject:
   - component: {fileID: 1454859669}
   - component: {fileID: 1454859668}
   m_Layer: 0
-  m_Name: Golpeo_Padre
+  m_Name: Golpeo_Padre_Esteban
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29710,7 +29712,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 545670607}
-  m_Father: {fileID: 1908625727}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &1454859668
 ParticleSystemRenderer:
@@ -29808,7 +29810,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -29865,7 +29867,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 0
+  randomSeed: 2112
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -44525,7 +44527,6 @@ Transform:
   m_Children:
   - {fileID: 1195603886}
   - {fileID: 1083560042}
-  - {fileID: 1454859667}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
@@ -44541,3 +44542,4 @@ SceneRoots:
   - {fileID: 104771522}
   - {fileID: 1479921511}
   - {fileID: 315114086}
+  - {fileID: 1454859667}
