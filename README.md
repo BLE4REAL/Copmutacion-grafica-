@@ -7,3 +7,7 @@
 ### Slash de Pablo:
 
 https://github.com/user-attachments/assets/251ab5d7-99a6-468c-a4b1-4b4f3bbded16
+
+### Slash de Mateo:
+
+El video ta' muy pesado pa subirlo, lo mostraremos en pantalla y luego con más calma lo subiremos bien. Perdón por el inconveniente.
