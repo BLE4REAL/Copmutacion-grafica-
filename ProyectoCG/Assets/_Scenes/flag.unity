@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 95193529}
   - component: {fileID: 95193528}
   m_Layer: 0
-  m_Name: Particle System (1)
+  m_Name: cube Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9842,8 +9842,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1077677417}
-  - {fileID: 1053043157}
   - {fileID: 95193527}
+  - {fileID: 1053043157}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &330585543
@@ -10669,7 +10669,7 @@ GameObject:
   - component: {fileID: 1053043159}
   - component: {fileID: 1053043158}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Cube Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

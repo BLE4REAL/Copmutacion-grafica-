@@ -39,14 +39,22 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _Normal_Map:
+        m_Texture: {fileID: 2800000, guid: 37342dec379b6a54c8f8620dea35d7a1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _DstBlend: 10
     - _DstBlendAlpha: 10
+    - _NormalStrenght: 0
     - _SrcBlend: 5
     - _Surface: 1
     - _ZWrite: 0
-    m_Colors: []
+    - _circle_depth: 1
+    m_Colors:
+    - _CirculeParams: {r: 0.2, g: 0.8, b: 0, a: 0}
+    - _ReflectionColor: {r: 0.43516377, g: 0.47199154, b: 0.7264151, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
