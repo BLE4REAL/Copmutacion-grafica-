@@ -15,6 +15,8 @@ https://docs.google.com/document/d/1a-n2a57m1tnwOwVU-p11BiztvHJrVd4hw62ywPLO28w/
 ### efecto lifesteal:
 
 https://github.com/user-attachments/assets/853ac559-d7c6-43f1-a67b-277cb383609c
+
+
 -
 -
 -
