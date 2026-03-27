@@ -30,6 +30,32 @@ https://github.com/user-attachments/assets/853ac559-d7c6-43f1-a67b-277cb383609c
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Slash de Esteban:
 
 ![Tercer Slash Juan Esteban Araujo](https://github.com/user-attachments/assets/632777d8-bedc-4946-9743-8557f4cc6f4d)
