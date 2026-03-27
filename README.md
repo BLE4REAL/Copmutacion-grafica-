@@ -6,11 +6,7 @@ https://docs.google.com/document/d/1a-n2a57m1tnwOwVU-p11BiztvHJrVd4hw62ywPLO28w/
 
 ### concept:
 
-#### cura:
-![concept cura](https://github.com/user-attachments/assets/f821145c-cf18-499b-8fb7-90e1a9054e82)
-
-#### daño:
-
+<img width="1024" height="712" alt="Image" src="https://github.com/user-attachments/assets/c09cad25-d4ad-4d1b-b8f2-c2e09ba04112" />
 
 ### efecto lifesteal:
 
