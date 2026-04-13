@@ -48,6 +48,20 @@
                 },
                 "m_SlotId": 1
             }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "e3fba2c0338a46cead8a6993c2dc26a9"
+                },
+                "m_SlotId": 3
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "ac59c601685f4dfb9ba84bb06128bfcf"
+                },
+                "m_SlotId": 2
+            }
         }
     ],
     "m_VertexContext": {
@@ -79,6 +93,21 @@
     },
     "m_SubDatas": [],
     "m_ActiveTargets": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "06aa3feadaf346fb95af97245559628d",
+    "m_Id": 2,
+    "m_DisplayName": "ShadowAttenuation",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "ShadowAttenuation",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
 }
 
 {
@@ -175,6 +204,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "4c9ac0ad38394664b69879587ca1e8f0",
+    "m_Id": 3,
+    "m_DisplayName": "ShadowAttenuation",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "ShadowAttenuation",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
     "m_ObjectId": "868cdf4143d444cea7c4a30403a567db",
     "m_Id": 2,
@@ -208,10 +252,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 172.0,
-            "y": -150.40000915527345,
-            "width": 102.40005493164063,
-            "height": 100.80003356933594
+            "x": 194.39999389648438,
+            "y": -150.39999389648438,
+            "width": 155.20001220703126,
+            "height": 124.79998779296875
         }
     },
     "m_Slots": [
@@ -220,6 +264,9 @@
         },
         {
             "m_Id": "19739317876947969ec6e405a5a88112"
+        },
+        {
+            "m_Id": "06aa3feadaf346fb95af97245559628d"
         }
     ],
     "synonyms": [],
@@ -268,6 +315,9 @@
         },
         {
             "m_Id": "408874d936f646c19dedc3e3b3e94ff5"
+        },
+        {
+            "m_Id": "4c9ac0ad38394664b69879587ca1e8f0"
         }
     ],
     "synonyms": [
