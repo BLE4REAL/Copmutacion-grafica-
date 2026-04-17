@@ -1590,7 +1590,7 @@
     "m_ObjectId": "1a0f3a4983c74ff8b9abc49795094cc3",
     "m_Title": "Truee normals",
     "m_Position": {
-        "x": -566.0000610351563,
+        "x": -566.0,
         "y": 1775.0
     }
 }
@@ -2219,7 +2219,7 @@
     "m_Title": "NormalMap",
     "m_Position": {
         "x": -1697.0,
-        "y": 203.99996948242188
+        "y": 204.0
     }
 }
 
@@ -3335,7 +3335,7 @@
     "m_ObjectId": "5d3998fcc15b43f4a1eb056271bf82dc",
     "m_Title": "Rotacion",
     "m_Position": {
-        "x": -4060.000244140625,
+        "x": -4060.0,
         "y": 1107.0
     }
 }
