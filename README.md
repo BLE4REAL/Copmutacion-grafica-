@@ -1,5 +1,43 @@
 # Videos de ejercicio estan en main, trabajo esta en branch Tarea_2
 
+
+### Actividad 3 Shaders de superficie
+
+https://github.com/user-attachments/assets/0dcbe8f4-0791-48f0-9cc3-40ed8fcd4cc7
+
+
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
 ### moodboard:
 
 https://docs.google.com/document/d/1a-n2a57m1tnwOwVU-p11BiztvHJrVd4hw62ywPLO28w/edit?usp=sharing
