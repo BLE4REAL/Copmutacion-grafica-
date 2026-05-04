@@ -44,6 +44,14 @@ Material:
         m_Texture: {fileID: 2800000, guid: 3be8dac097d25f94e85faab9cb560266, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_24a231717e1a4abdbd3fac2ba7087d60_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 3be8dac097d25f94e85faab9cb560266, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_597bdecca2a248c8ad9a3f05901d9f6c_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 3be8dac097d25f94e85faab9cb560266, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -77,6 +85,7 @@ Material:
     - _Foam_Cutoff: 0.262
     - _Foam_Distance: 0.18
     - _Foam_Noise: 68.3
+    - _Foam_Peak_Level: 0.07
     - _Foam_Speed: 0.078
     - _FresnelPower: 0
     - _Fresnel_Power: 1.25
@@ -90,6 +99,7 @@ Material:
     - _ReflectionStrenght: 0
     - _Refraction_Strenght: 0.01
     - _SampleGI: 0
+    - _Specular_Smoothness: 6
     - _Speed: 5
     - _Speed_Olas: 0.14
     - _SrcBlend: 1
@@ -106,6 +116,7 @@ Material:
     - _DisplacementAnimation: {r: 0.22, g: 0.24, b: 0, a: 0}
     - _Foam_Color: {r: 1, g: 1, b: 1, a: 0}
     - _MidColor: {r: 0.00575296, g: 0.59226274, b: 0.7622642, a: 0}
+    - _Specular_Color: {r: 1, g: 0, b: 0.08111954, a: 0}
     - _Tiling: {r: -3.14, g: 0.25, b: 0, a: 0}
     - _Water_Color: {r: 0.23028657, g: 0.6509434, b: 0.5003708, a: 0}
     - _Water_color: {r: 0.4563332, g: 0.70407915, b: 0.8226415, a: 1}
