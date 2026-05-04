@@ -108,17 +108,20 @@ Material:
     - _VoronoiPower: 24.5
     - _ZWrite: 1
     - _fresnel_influence: 0.96
+    - _reefractionscale: 1
+    - _refractionspeed: 0.5
+    - _refractionstrenght: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color_Olas: {r: 0.04442863, g: 0.7849056, b: 0.518334, a: 1}
-    - _DeepColor: {r: 0.1809897, g: 0.3341321, b: 0.7735849, a: 0.39215687}
+    - _DeepColor: {r: 0.1809896, g: 0.334132, b: 0.7735849, a: 0.2}
     - _DisplacementAnimation: {r: 0.22, g: 0.24, b: 0, a: 0}
     - _Foam_Color: {r: 1, g: 1, b: 1, a: 0}
-    - _MidColor: {r: 0.00575296, g: 0.59226274, b: 0.7622642, a: 0}
+    - _MidColor: {r: 0.00575296, g: 0.59226274, b: 0.7622642, a: 0.09803922}
     - _Specular_Color: {r: 1, g: 0, b: 0.08111954, a: 0}
     - _Tiling: {r: -3.14, g: 0.25, b: 0, a: 0}
-    - _Water_Color: {r: 0.23028657, g: 0.6509434, b: 0.5003708, a: 0}
+    - _Water_Color: {r: 0.23028645, g: 0.6509434, b: 0.5003708, a: 0.105882354}
     - _Water_color: {r: 0.4563332, g: 0.70407915, b: 0.8226415, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
