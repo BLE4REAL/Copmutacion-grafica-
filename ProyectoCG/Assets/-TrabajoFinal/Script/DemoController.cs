@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class EffectsDemoController : MonoBehaviour
 {
@@ -28,6 +29,10 @@ public class EffectsDemoController : MonoBehaviour
 
     [Tooltip("Velocidad inicial de los proyectiles")]
     public float projectileSpeed = 12f;
+
+    [Tooltip("Tiempo entre cada proyectil de la tanda (segundos)")]
+    public float timeBetweenProjectiles = 0.2f;
+
 
     [Header("UI - Sliders de color")]
     [Tooltip("Slider del matiz (recorre el círculo cromático)")]
@@ -104,23 +109,25 @@ public class EffectsDemoController : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < projectilesPerVolley; i++)
-        {
-            Vector2 circle = Random.insideUnitCircle.normalized;
-            Vector3 spawnPos = target.position
-                + new Vector3(circle.x, 0f, circle.y) * spawnRadius
-                + Vector3.up * 1.2f;
+        StartCoroutine(LaunchVolley());
 
-            GameObject proj = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
+        //for (int i = 0; i < projectilesPerVolley; i++)
+        //{
+        //    Vector2 circle = Random.insideUnitCircle.normalized;
+        //    Vector3 spawnPos = target.position
+        //        + new Vector3(circle.x, 0f, circle.y) * spawnRadius
+        //        + Vector3.up * 1.2f;
 
-            Vector3 dir = (target.position + Vector3.up * 1.2f - spawnPos).normalized;
+        //    GameObject proj = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
 
-            Rigidbody rb = proj.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.linearVelocity = dir * projectileSpeed;
-            }
-        }
+        //    Vector3 dir = (target.position + Vector3.up * 1.2f - spawnPos).normalized;
+
+        //    Rigidbody rb = proj.GetComponent<Rigidbody>();
+        //    if (rb != null)
+        //    {
+        //        rb.linearVelocity = dir * projectileSpeed;
+        //    }
+        //}
     }
 
     // ---------- SLIDERS de color (matiz, saturación, brillo) ----------
@@ -132,12 +139,42 @@ public class EffectsDemoController : MonoBehaviour
 
         currentColor = Color.HSVToRGB(h, s, v);
 
+        Color ringColor = Color.HSVToRGB(h, 1f, 1f);
+
         if (energyShield != null)
         {
             energyShield.SetColor(currentColor);
+            energyShield.SetRingColor(ringColor);
         }
 
         // TODO: aplicar también a partículas y material de disolución
         // cuando estén implementados.
+    }
+
+    private IEnumerator LaunchVolley()
+    {
+        for (int i = 0; i < projectilesPerVolley; i++)
+        {
+            SpawnOneProjectile();
+            yield return new WaitForSeconds(timeBetweenProjectiles);
+        }
+    }
+
+    private void SpawnOneProjectile()
+    {
+        Vector2 circle = Random.insideUnitCircle.normalized;
+        Vector3 spawnPos = target.position
+            + new Vector3(circle.x, 0f, circle.y) * spawnRadius
+            + Vector3.up * 1.2f;
+
+        GameObject proj = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
+
+        Vector3 dir = (target.position + Vector3.up * 1.2f - spawnPos).normalized;
+
+        Rigidbody rb = proj.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.linearVelocity = dir * projectileSpeed;
+        }
     }
 }

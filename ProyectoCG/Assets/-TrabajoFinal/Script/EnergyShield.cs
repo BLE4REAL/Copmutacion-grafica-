@@ -9,6 +9,12 @@ public class EnergyShield : MonoBehaviour
     [Tooltip("Collider del escudo; se activa solo cuando el escudo está formado")]
     public Collider shieldCollider;
 
+    [Tooltip("Duración del destello de impacto (segundos)")]
+    public float hitDuration = 0.5f;
+
+    private Coroutine hitAnimation;
+
+    
     private Material shieldMaterial;
     private bool initialized = false;
     private bool isActive = false;
@@ -18,9 +24,11 @@ public class EnergyShield : MonoBehaviour
     // haberse movido con el escudo apagado).
     private Color currentColor = Color.cyan;
 
+    private static readonly int HitPositionID = Shader.PropertyToID("_HitPosition");
+    private static readonly int HitTimeID = Shader.PropertyToID("_HitTime");
     private static readonly int BuildProgressID = Shader.PropertyToID("_BuildProgress");
     private static readonly int ShieldColorID = Shader.PropertyToID("_ShieldColor");
-
+    private static readonly int RingColorID = Shader.PropertyToID("_RingColor");
     // Inicialización perezosa: cachea el material la primera vez que se necesita,
     // sin importar si el GameObject empezó activo o desactivado.
     private void EnsureInitialized()
@@ -103,6 +111,41 @@ public class EnergyShield : MonoBehaviour
 
     public void RegisterHit(Vector3 worldPosition)
     {
-        // TODO: onda de impacto cuando montemos los proyectiles.
+        EnsureInitialized();
+        if (shieldMaterial == null) return;
+
+        // Le decimos al shader DÓNDE pegó el proyectil.
+        shieldMaterial.SetVector(HitPositionID, worldPosition);
+
+        // Arrancamos la animación de la onda. Si había una corriendo,
+        // la cancelamos para que este nuevo impacto empiece desde cero.
+        if (hitAnimation != null) StopCoroutine(hitAnimation);
+        hitAnimation = StartCoroutine(AnimateHit());
     }
+
+    private IEnumerator AnimateHit()
+    {
+        float elapsed = 0f;
+        // Empezamos con el tiempo en 0 (anillo en el punto de impacto).
+        shieldMaterial.SetFloat(HitTimeID, 0f);
+
+        while (elapsed < hitDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / hitDuration;
+            shieldMaterial.SetFloat(HitTimeID, t);
+            yield return null;
+        }
+
+        // Al final dejamos en 1 (anillo invisible por el fade).
+        shieldMaterial.SetFloat(HitTimeID, 1f);
+        hitAnimation = null;
+    }
+
+    public void SetRingColor(Color color)
+    {
+        EnsureInitialized();
+        if (shieldMaterial != null) shieldMaterial.SetColor(RingColorID, color);
+    }
+    
 }
