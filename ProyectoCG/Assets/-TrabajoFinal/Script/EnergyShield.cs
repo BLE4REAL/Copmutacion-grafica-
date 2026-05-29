@@ -15,6 +15,8 @@ public class EnergyShield : MonoBehaviour
     private Coroutine hitAnimation;
 
     
+
+    public bool IsActive => isActive;
     private Material shieldMaterial;
     private bool initialized = false;
     private bool isActive = false;
@@ -147,5 +149,5 @@ public class EnergyShield : MonoBehaviour
         EnsureInitialized();
         if (shieldMaterial != null) shieldMaterial.SetColor(RingColorID, color);
     }
-    
+
 }

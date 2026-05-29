@@ -4,6 +4,8 @@ using System.Collections;
 
 public class EffectsDemoController : MonoBehaviour
 {
+    [Header("Animator del personaje")]
+    public Animator characterAnimator;
     [Header("Referencias de efectos")]
     [Tooltip("Sistema de partículas del Botón 1 (aura)")]
     public ParticleSystem auraEffect;
@@ -13,10 +15,18 @@ public class EffectsDemoController : MonoBehaviour
 
     [Tooltip("Script del escudo de energía (Botón 3)")]
     public EnergyShield energyShield;
+    [Header("Decoración del escudo")]
+    public ParticleSystem shieldAmbientParticles;
+
+    [Tooltip("Retraso antes de activar el escudo, para sincronizar con la animación de cast")]
+    public float castAnimationDelay = 0.5f;
 
     [Header("Proyectiles (Botón 4)")]
     [Tooltip("Prefab del proyectil a instanciar")]
+    
     public GameObject projectilePrefab;
+
+
 
     [Tooltip("El personaje, hacia donde apuntan los proyectiles")]
     public Transform target;
@@ -92,12 +102,48 @@ public class EffectsDemoController : MonoBehaviour
     }
 
     // ---------- BOTÓN 3: Escudo de energía ----------
+    //public void OnButton3_Shield()
+    //{
+    //    if (energyShield != null)
+    //    {
+    //        bool willActivate = !energyShield.IsActive;
+
+    //        energyShield.ToggleShield();
+            
+    //        if (characterAnimator != null && energyShield.gameObject.activeSelf)
+    //        {
+    //            characterAnimator.SetTrigger("Cast");
+    //        }
+    //    }
+    //}
+
     public void OnButton3_Shield()
     {
-        if (energyShield != null)
+        if (energyShield == null) return;
+
+        bool willActivate = !energyShield.IsActive;
+
+        if (willActivate)
         {
+            // ACTIVACIÓN: arrancamos la animación primero, el escudo se activa
+            // después del retraso configurado.
+            if (characterAnimator != null)
+            {
+                characterAnimator.SetTrigger("Cast");
+            }
+            StartCoroutine(ActivateShieldAfterDelay());
+        }
+        else
+        {
+            // DESACTIVACIÓN: inmediata, sin animación del personaje.
             energyShield.ToggleShield();
         }
+    }
+
+    private IEnumerator ActivateShieldAfterDelay()
+    {
+        yield return new WaitForSeconds(castAnimationDelay);
+        energyShield.ToggleShield();
     }
 
     // ---------- BOTÓN 4: Lanzar proyectiles ----------
@@ -145,6 +191,12 @@ public class EffectsDemoController : MonoBehaviour
         {
             energyShield.SetColor(currentColor);
             energyShield.SetRingColor(ringColor);
+        }
+
+        if (shieldAmbientParticles != null)
+        {
+            var main = shieldAmbientParticles.main;
+            main.startColor = ringColor;
         }
 
         // TODO: aplicar también a partículas y material de disolución

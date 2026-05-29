@@ -109,7 +109,7 @@ Material:
     - _Angle: 1
     - _Blend: 0.86
     - _BlendModePreserveSpecular: 1
-    - _BuildProgress: 1
+    - _BuildProgress: 0
     - _BumpScale: 1
     - _Cell_Density: 0.1
     - _ClearCoatMask: 0
@@ -153,7 +153,9 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Grid_Color: {r: 0, g: 0.16470589, b: 0, a: 0}
     - _Halo_Build: {r: 2.670157, g: 0, b: 0.09785919, a: 0}
+    - _Halo_Build_color: {r: 1, g: 0, b: 0.03454399, a: 0}
     - _HitPosition: {r: 0, g: 0, b: 0, a: 0}
+    - _RingColor: {r: 0, g: 5.340313, b: 0.3210271, a: 0}
     - _ShieldColor: {r: 0.027518999, g: 0.20754719, b: 0.02114632, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
