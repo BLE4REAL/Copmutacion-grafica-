@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class Dissolver : MonoBehaviour
 {
@@ -13,6 +15,42 @@ public class Dissolver : MonoBehaviour
     private static readonly int DissolveValueID = Shader.PropertyToID("_DissolveValue");
     private static readonly int DissolveColorID = Shader.PropertyToID("_EdgeColor");
     private Color currentColor = Color.cyan;
+
+
+
+
+    [Header("Post-procesado")]
+    [Tooltip("Global Volume de la escena para los efectos de post-procesado")]
+    public Volume postProcessVolume;
+
+    [Tooltip("Intensidad máxima de la aberración cromática cuando el dissolve está al 100%")]
+    public float chromaticAberrationMax = 1f;
+
+    [Tooltip("Cuánto se SUMA al vignette base cuando el dissolve está al 100%")]
+    [Range(0f, 1f)]
+    public float vignetteIncrease = 0.3f;
+
+    private ChromaticAberration chromaticAberration;
+    private Vignette vignette;
+
+    private float vignetteBase = 0f; // Para almacenar el valor base del vignette y sumarle el aumento
+
+
+    void Awake()
+    {
+        if (postProcessVolume != null && postProcessVolume.profile != null)
+        {
+            postProcessVolume.profile.TryGet(out chromaticAberration);
+            postProcessVolume.profile.TryGet(out vignette);
+
+            if (vignette != null)
+            {
+                vignetteBase = vignette.intensity.value;
+            }
+        }
+    }
+
+
 
     public void StartDissolverEffect()
     {
@@ -68,6 +106,18 @@ public class Dissolver : MonoBehaviour
         {
             dissolveMaterial.SetColor(DissolveColorID, currentColor);
             dissolveMaterial.SetFloat(DissolveValueID, value);
+        }
+
+
+
+
+        if (chromaticAberration != null)
+        {
+            chromaticAberration.intensity.value = value * chromaticAberrationMax;
+        }
+        if (vignette != null)
+        {
+            vignette.intensity.value = Mathf.Clamp01(vignetteBase + value * vignetteIncrease);
         }
     }
 

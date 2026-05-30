@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class EffectsDemoController : MonoBehaviour
 {
@@ -31,6 +33,8 @@ public class EffectsDemoController : MonoBehaviour
     [Space(20)]
     [Header("Configuración de efectos")]
 
+    [SerializeField] private AuraSettings auraSettings;
+
     [SerializeField] private DissolverSettings dissolverSettings;
 
     [SerializeField] private EscudoSettings escudoSettings;
@@ -39,7 +43,9 @@ public class EffectsDemoController : MonoBehaviour
 
     [SerializeField] private UISettings uiSettings;
 
+    private static readonly int ColorID = Shader.PropertyToID("_Color");
     
+
 
 
     void Awake()
@@ -48,6 +54,11 @@ public class EffectsDemoController : MonoBehaviour
         {
             dissolverSettings.dissolveMaterial = dissolver.dissolveMaterial;
         }
+
+        if (auraSettings.auraMaterial1 != null)
+            auraSettings.originalColor1 = auraSettings.auraMaterial1.GetColor(ColorID);
+        if (auraSettings.auraMaterial2 != null)
+            auraSettings.originalColor2 = auraSettings.auraMaterial2.GetColor(ColorID);
     }
 
     void Start()
@@ -74,8 +85,79 @@ public class EffectsDemoController : MonoBehaviour
     // ========== BOTÓN 1: Partículas (aura) ============================================================
     public void OnButton1_Aura()
     {
-        // TODO: disparar/alternar el aura.
-        Debug.Log("Botón 1: aura de partículas");
+        if (auraEffect == null || auraSettings == null || auraSettings.auraController == null) return;
+
+        bool willActivate = !auraSettings.isActive;
+
+        if (willActivate)
+        {
+            // ACTIVAR: animación primero, efecto después.
+            if (characterAnimator != null)
+            {
+                characterAnimator.SetTrigger("Fight");
+            }
+            StartCoroutine(ActivateAuraAfterDelay());
+        }
+        else
+        {
+            // DESACTIVAR: fade primero, animación después.
+            StartCoroutine(DeactivateAuraSequence());
+        }
+    }
+
+    private IEnumerator ActivateAuraAfterDelay()
+    {
+        yield return new WaitForSeconds(auraSettings.auraActivationDelay);
+
+        SetAuraBrightness(1f); // restaurar brillo antes de mostrar
+        auraSettings.auraController.SetActive(true);
+        auraSettings.isActive = true;
+        auraEffect.Play();
+    }
+
+    private IEnumerator DeactivateAuraSequence()
+    {
+        // Fase 1: fade out gradual.
+        float elapsed = 0f;
+        while (elapsed < auraSettings.auraFadeOutDuration)
+        {
+            elapsed += Time.deltaTime;
+            float brightness = Mathf.Lerp(1f, 0f, elapsed / auraSettings.auraFadeOutDuration);
+            SetAuraBrightness(brightness);
+            yield return null;
+        }
+
+        // Fase 2: apagar el efecto y el GameObject.
+        auraEffect.Stop();
+        auraSettings.auraController.SetActive(false);
+        auraSettings.isActive = false;
+
+        // Fase 3: restaurar el color original ya que el GameObject está apagado
+        // (no se nota visualmente porque está invisible, pero deja el material
+        // en buen estado para la próxima activación o si se corta el Play).
+        SetAuraBrightness(1f);
+
+        // Fase 4: animación del personaje.
+        if (characterAnimator != null)
+        {
+            characterAnimator.SetTrigger("StopFight");
+        }
+    }
+
+    private void SetAuraBrightness(float brightness)
+    {
+        SetMaterialBrightness(auraSettings.auraMaterial1, auraSettings.originalColor1, brightness);
+        SetMaterialBrightness(auraSettings.auraMaterial2, auraSettings.originalColor2, brightness);
+    }
+
+    private void SetMaterialBrightness(Material mat, Color originalColor, float brightness)
+    {
+        if (mat == null) return;
+
+        Color faded = originalColor * brightness;
+        faded.a = originalColor.a; // alpha intacto
+
+        mat.SetColor(ColorID, faded);
     }
 
     // ========== BOTÓN 2: Shader de disolución ================================================================
@@ -249,6 +331,28 @@ public class EffectsDemoController : MonoBehaviour
         // TODO: aplicar también a partículas y material de disolución
         // cuando estén implementados.
     }
+
+}
+
+[System.Serializable]
+public class AuraSettings
+{
+    [Tooltip("El efecto de aura a activar")]
+    public GameObject auraController;
+
+    [Tooltip("Retraso antes de activar el aura, sincronizar con animación de Fight")]
+    public float auraActivationDelay = 1f;
+
+    [Tooltip("Duración del fade out del aura al desactivarse")]
+    public float auraFadeOutDuration = 1f;
+
+    public bool isActive = false;
+
+    public Material auraMaterial1;
+    public Material auraMaterial2;
+
+    public Color originalColor1;
+    public Color originalColor2;
 
 }
 
