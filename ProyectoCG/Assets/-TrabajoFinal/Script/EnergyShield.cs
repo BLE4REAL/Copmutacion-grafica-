@@ -22,8 +22,6 @@ public class EnergyShield : MonoBehaviour
     private bool isActive = false;
     private Coroutine activeAnimation;
 
-    // Guardamos el último color para reaplicarlo al encender (el slider puede
-    // haberse movido con el escudo apagado).
     private Color currentColor = Color.cyan;
 
     private static readonly int HitPositionID = Shader.PropertyToID("_HitPosition");
@@ -31,6 +29,8 @@ public class EnergyShield : MonoBehaviour
     private static readonly int BuildProgressID = Shader.PropertyToID("_BuildProgress");
     private static readonly int ShieldColorID = Shader.PropertyToID("_ShieldColor");
     private static readonly int RingColorID = Shader.PropertyToID("_RingColor");
+    private static readonly int HaloColorID = Shader.PropertyToID("_HaloColor");
+
     // Inicialización perezosa: cachea el material la primera vez que se necesita,
     // sin importar si el GameObject empezó activo o desactivado.
     private void EnsureInitialized()
@@ -111,6 +111,18 @@ public class EnergyShield : MonoBehaviour
         if (shieldMaterial != null) shieldMaterial.SetColor(ShieldColorID, color);
     }
 
+    public void SetHaloColor(Color color)
+    {
+        EnsureInitialized();
+        if (shieldMaterial != null) shieldMaterial.SetColor(HaloColorID, color);
+    }
+
+    public void SetRingColor(Color color)
+    {
+        EnsureInitialized();
+        if (shieldMaterial != null) shieldMaterial.SetColor(RingColorID, color);
+    }
+
     public void RegisterHit(Vector3 worldPosition)
     {
         EnsureInitialized();
@@ -144,10 +156,6 @@ public class EnergyShield : MonoBehaviour
         hitAnimation = null;
     }
 
-    public void SetRingColor(Color color)
-    {
-        EnsureInitialized();
-        if (shieldMaterial != null) shieldMaterial.SetColor(RingColorID, color);
-    }
+
 
 }

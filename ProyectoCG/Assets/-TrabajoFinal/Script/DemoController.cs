@@ -1,70 +1,52 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 
 public class EffectsDemoController : MonoBehaviour
 {
+    
     [Header("Animator del personaje")]
     public Animator characterAnimator;
+
     [Header("Referencias de efectos")]
+
+    [Header("Efecto 1: Aura")]
     [Tooltip("Sistema de partículas del Botón 1 (aura)")]
     public ParticleSystem auraEffect;
 
+    [Header("Efecto 2: Disolución")]
     [Tooltip("Renderer del personaje que usa el shader de disolución (Botón 2)")]
-    public Renderer dissolveRenderer;
+    public Dissolver dissolver;
 
+    [Header("Efecto 3: Escudo de energía")]
     [Tooltip("Script del escudo de energía (Botón 3)")]
     public EnergyShield energyShield;
-    [Header("Decoración del escudo")]
-    public ParticleSystem shieldAmbientParticles;
 
-    [Tooltip("Retraso antes de activar el escudo, para sincronizar con la animación de cast")]
-    public float castAnimationDelay = 0.5f;
-
-    [Header("Proyectiles (Botón 4)")]
+    [Header("Boton 4: Proyectiles")]
     [Tooltip("Prefab del proyectil a instanciar")]
-    
     public GameObject projectilePrefab;
 
+    [Space(20)]
+    [Header("Configuración de efectos")]
 
+    [SerializeField] private DissolverSettings dissolverSettings;
 
-    [Tooltip("El personaje, hacia donde apuntan los proyectiles")]
-    public Transform target;
+    [SerializeField] private EscudoSettings escudoSettings;
 
-    [Tooltip("Cuántos proyectiles se lanzan por tanda")]
-    public int projectilesPerVolley = 5;
+    [SerializeField] private ProjectileSettings projectileSettings;
 
-    [Tooltip("Distancia desde el personaje a la que aparecen")]
-    public float spawnRadius = 6f;
+    [SerializeField] private UISettings uiSettings;
 
-    [Tooltip("Velocidad inicial de los proyectiles")]
-    public float projectileSpeed = 12f;
+    
 
-    [Tooltip("Tiempo entre cada proyectil de la tanda (segundos)")]
-    public float timeBetweenProjectiles = 0.2f;
-
-
-    [Header("UI - Sliders de color")]
-    [Tooltip("Slider del matiz (recorre el círculo cromático)")]
-    public Slider colorSlider;        // matiz (hue)
-
-    [Tooltip("Slider de saturación (qué tan vivo es el color)")]
-    public Slider saturationSlider;
-
-    [Tooltip("Slider de brillo (qué tan claro u oscuro es)")]
-    public Slider valueSlider;
-
-    // Material instanciado del shader de disolución
-    private Material dissolveMaterial;
-
-    // Color actual elegido por los sliders
-    private Color currentColor = Color.cyan;
 
     void Awake()
     {
-        if (dissolveRenderer != null)
+        if (dissolver != null)
         {
-            dissolveMaterial = dissolveRenderer.material;
+            dissolverSettings.dissolveMaterial = dissolver.dissolveMaterial;
         }
     }
 
@@ -72,51 +54,76 @@ public class EffectsDemoController : MonoBehaviour
     {
         // Valores iniciales (se asignan ANTES de los listeners para no disparar
         // el evento al asignarlos).
-        if (saturationSlider != null) saturationSlider.value = 0.8f;
-        if (valueSlider != null) valueSlider.value = 0.5f;
+        dissolverSettings.dissolveMaterial.SetFloat("_DissolveValue", 0f);
+
+        if (uiSettings.saturationSlider != null) uiSettings.saturationSlider.value = 0.8f;
+        if (uiSettings.valueSlider != null) uiSettings.valueSlider.value = 0.5f;
 
         // Los tres sliders disparan el mismo método.
-        if (colorSlider != null)
-            colorSlider.onValueChanged.AddListener(OnAnyColorSliderChanged);
-        if (saturationSlider != null)
-            saturationSlider.onValueChanged.AddListener(OnAnyColorSliderChanged);
-        if (valueSlider != null)
-            valueSlider.onValueChanged.AddListener(OnAnyColorSliderChanged);
+        if (uiSettings.colorSlider != null)
+            uiSettings.colorSlider.onValueChanged.AddListener(OnAnyColorSliderChanged);
+        if (uiSettings.saturationSlider != null)
+            uiSettings.saturationSlider.onValueChanged.AddListener(OnAnyColorSliderChanged);
+        if (uiSettings.valueSlider != null)
+            uiSettings.valueSlider.onValueChanged.AddListener(OnAnyColorSliderChanged);
 
         // Aplicamos el color inicial una vez al arrancar.
         OnAnyColorSliderChanged(0f);
     }
 
-    // ---------- BOTÓN 1: Partículas (aura) ----------
+    // ========== BOTÓN 1: Partículas (aura) ============================================================
     public void OnButton1_Aura()
     {
         // TODO: disparar/alternar el aura.
         Debug.Log("Botón 1: aura de partículas");
     }
 
-    // ---------- BOTÓN 2: Shader de disolución ----------
+    // ========== BOTÓN 2: Shader de disolución ================================================================
     public void OnButton2_Dissolve()
     {
-        // TODO: animar la propiedad de disolución del material.
-        Debug.Log("Botón 2: disolución");
+        if (dissolver == null) return;
+
+        bool willDissolved = !dissolver.IsDissolved;
+        
+        if (willDissolved)
+        {
+            if (characterAnimator != null)
+            {
+                characterAnimator.SetTrigger("Dissolve");
+            }
+            StartCoroutine(StartDissolving());
+        }
+        else
+        {
+
+            dissolver.StartAppearingEffect();
+            StartCoroutine(StartAnimationAppearing());
+
+        }
+        
     }
 
-    // ---------- BOTÓN 3: Escudo de energía ----------
-    //public void OnButton3_Shield()
-    //{
-    //    if (energyShield != null)
-    //    {
-    //        bool willActivate = !energyShield.IsActive;
+    private IEnumerator StartDissolving()
+    {
+        
+        yield return new WaitForSeconds(dissolverSettings.dissolveDelay);
+        
+        dissolver.StartDissolverEffect();
+    }
 
-    //        energyShield.ToggleShield();
-            
-    //        if (characterAnimator != null && energyShield.gameObject.activeSelf)
-    //        {
-    //            characterAnimator.SetTrigger("Cast");
-    //        }
-    //    }
-    //}
+    private IEnumerator StartAnimationAppearing()
+    {
+        
+        yield return new WaitForSeconds(dissolverSettings.appearAnimationDelay);
+    
+        if (characterAnimator != null)
+        {
+            characterAnimator.SetTrigger("Appear");
+        }
 
+    }
+
+    // ========== BOTÓN 3: Escudo de energía ============================================================
     public void OnButton3_Shield()
     {
         if (energyShield == null) return;
@@ -142,14 +149,16 @@ public class EffectsDemoController : MonoBehaviour
 
     private IEnumerator ActivateShieldAfterDelay()
     {
-        yield return new WaitForSeconds(castAnimationDelay);
+        yield return new WaitForSeconds(escudoSettings.castAnimationDelay);
         energyShield.ToggleShield();
     }
 
-    // ---------- BOTÓN 4: Lanzar proyectiles ----------
+
+
+    // ========== BOTÓN 4: Lanzar proyectiles =====================================================
     public void OnButton4_LaunchProjectiles()
     {
-        if (projectilePrefab == null || target == null)
+        if (projectilePrefab == null || projectileSettings.target == null)
         {
             Debug.LogWarning("Falta asignar projectilePrefab o target");
             return;
@@ -157,76 +166,158 @@ public class EffectsDemoController : MonoBehaviour
 
         StartCoroutine(LaunchVolley());
 
-        //for (int i = 0; i < projectilesPerVolley; i++)
-        //{
-        //    Vector2 circle = Random.insideUnitCircle.normalized;
-        //    Vector3 spawnPos = target.position
-        //        + new Vector3(circle.x, 0f, circle.y) * spawnRadius
-        //        + Vector3.up * 1.2f;
-
-        //    GameObject proj = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
-
-        //    Vector3 dir = (target.position + Vector3.up * 1.2f - spawnPos).normalized;
-
-        //    Rigidbody rb = proj.GetComponent<Rigidbody>();
-        //    if (rb != null)
-        //    {
-        //        rb.linearVelocity = dir * projectileSpeed;
-        //    }
-        //}
     }
-
-    // ---------- SLIDERS de color (matiz, saturación, brillo) ----------
-    public void OnAnyColorSliderChanged(float _)
-    {
-        float h = colorSlider != null ? colorSlider.value : 0f;
-        float s = saturationSlider != null ? saturationSlider.value : 1f;
-        float v = valueSlider != null ? valueSlider.value : 1f;
-
-        currentColor = Color.HSVToRGB(h, s, v);
-
-        Color ringColor = Color.HSVToRGB(h, 1f, 1f);
-
-        if (energyShield != null)
-        {
-            energyShield.SetColor(currentColor);
-            energyShield.SetRingColor(ringColor);
-        }
-
-        if (shieldAmbientParticles != null)
-        {
-            var main = shieldAmbientParticles.main;
-            main.startColor = ringColor;
-        }
-
-        // TODO: aplicar también a partículas y material de disolución
-        // cuando estén implementados.
-    }
-
     private IEnumerator LaunchVolley()
     {
-        for (int i = 0; i < projectilesPerVolley; i++)
+        for (int i = 0; i < projectileSettings.projectilesPerVolley; i++)
         {
             SpawnOneProjectile();
-            yield return new WaitForSeconds(timeBetweenProjectiles);
+            yield return new WaitForSeconds(projectileSettings.timeBetweenProjectiles);
         }
     }
 
     private void SpawnOneProjectile()
     {
         Vector2 circle = Random.insideUnitCircle.normalized;
-        Vector3 spawnPos = target.position
-            + new Vector3(circle.x, 0f, circle.y) * spawnRadius
+        Vector3 spawnPos = projectileSettings.target.position
+            + new Vector3(circle.x, 0f, circle.y) * projectileSettings.spawnRadius
             + Vector3.up * 1.2f;
 
         GameObject proj = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
 
-        Vector3 dir = (target.position + Vector3.up * 1.2f - spawnPos).normalized;
+        Vector3 dir = (projectileSettings.target.position + Vector3.up * 1.2f - spawnPos).normalized;
 
         Rigidbody rb = proj.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.linearVelocity = dir * projectileSpeed;
+            rb.linearVelocity = dir * projectileSettings.projectileSpeed;
         }
     }
+
+    // ========== BOTÓN 5: Play/Pause ============================================================
+
+    public void OnButton5_PlayPause()
+    {
+        uiSettings.isPaused = !uiSettings.isPaused;
+
+        Time.timeScale = uiSettings.isPaused ? 0f : 1f;
+
+        if (uiSettings.pauseButtonText != null)
+        {
+            uiSettings.pauseButtonText.text = uiSettings.isPaused ? "Play" : "Pause";
+        }
+    }
+
+    // ========== SLIDERS de color (matiz, saturación, brillo) ===========================================================
+    public void OnAnyColorSliderChanged(float _)
+    {
+        float h = uiSettings.colorSlider != null ? uiSettings.colorSlider.value : 0f;
+        float s = uiSettings.saturationSlider != null ? uiSettings.saturationSlider.value : 1f;
+        float v = uiSettings.valueSlider != null ? uiSettings.valueSlider.value : 1f;
+
+        uiSettings.currentColor = Color.HSVToRGB(h, s, v);
+        uiSettings.saturationFillImage.color = Color.HSVToRGB(h, 1f, 1f);
+        uiSettings.valueFillImage.color = Color.HSVToRGB(h, 1f, 1f);
+
+        float t = h - 0.3f;
+        if (t < 0f) t += 1f; else if (t > 1f) t -= 1f;
+
+        Color ringColor = Color.HSVToRGB(h, 1f, 1f);
+        Color haloColor = Color.HSVToRGB(t, 1f, 2f);
+        if (v<= 0.1f) haloColor = Color.HSVToRGB(t, 1f, 2f * (10 * v));
+        Color DissolveColor = Color.HSVToRGB(h, 1f, 3f);
+
+
+        if (energyShield != null)
+        {
+            energyShield.SetColor(uiSettings.currentColor);
+            energyShield.SetRingColor(ringColor);
+            energyShield.SetHaloColor(haloColor);
+        }
+
+        if (escudoSettings.shieldAmbientParticles != null)
+        {
+            var main = escudoSettings.shieldAmbientParticles.main;
+            main.startColor = ringColor;
+        }
+
+        if (dissolver != null)
+        {
+            dissolver.SetColor(DissolveColor);
+        }
+
+        // TODO: aplicar también a partículas y material de disolución
+        // cuando estén implementados.
+    }
+
+}
+
+[System.Serializable]
+public class DissolverSettings
+{
+    [Tooltip("Retraso antes de empezar la animación de disolución, para sincronizar con la animación de dissolve")]
+    public float dissolveDelay = 0.5f; // Retraso antes de empezar a disolver
+
+    [Tooltip("Retraso después de iniciar el shader appear, antes de disparar la animación de Appear")]
+    public float appearAnimationDelay = 1.0f;
+
+    [Tooltip("Material que usa el shader de disolucion")]
+    public Material dissolveMaterial;
+}
+
+[System.Serializable]
+public class EscudoSettings
+{
+    [Header("Decoración del escudo")]
+    public ParticleSystem shieldAmbientParticles;
+
+    [Tooltip("Retraso antes de activar el escudo, para sincronizar con la animación de cast")]
+    public float castAnimationDelay = 0.5f;
+}
+
+[System.Serializable]
+public class ProjectileSettings
+{
+    [Tooltip("El personaje, hacia donde apuntan los proyectiles")]
+    public Transform target;
+
+    [Tooltip("Cuántos proyectiles se lanzan por tanda")]
+    public int projectilesPerVolley = 5;
+
+    [Tooltip("Distancia desde el personaje a la que aparecen")]
+    public float spawnRadius = 6f;
+
+    [Tooltip("Velocidad inicial de los proyectiles")]
+    public float projectileSpeed = 12f;
+
+    [Tooltip("Tiempo entre cada proyectil de la tanda (segundos)")]
+    public float timeBetweenProjectiles = 0.2f;
+
+}
+
+[System.Serializable]
+public class UISettings
+{
+    [Header("Color Actual")]
+    public Color currentColor = Color.cyan;
+
+
+    [Header("UI - Sliders de color")]
+    [Tooltip("Slider del matiz (recorre el círculo cromático)")]
+    public Slider colorSlider;
+
+    [Tooltip("Slider de saturación (qué tan vivo es el color)")]
+    public Slider saturationSlider;
+    public Image saturationFillImage; // Imagen del relleno del slider para cambiar su color
+
+    [Tooltip("Slider de brillo (qué tan claro u oscuro es)")]
+    public Slider valueSlider;
+    public Image valueFillImage; // Imagen del relleno del slider para cambiar su color
+
+    [Header("Pause")]
+    [Tooltip("Texto del botón de pausa, opcional, para alternar entre Pause y Play")]
+    public TMP_Text pauseButtonText;
+
+    public bool isPaused = false;
+
 }
