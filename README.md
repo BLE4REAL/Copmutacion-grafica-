@@ -1,5 +1,39 @@
-# Videos de ejercicio estan en main, trabajo esta en branch Tarea_2
+# Videos de Demo Final, Trabajo esta en la rama DemoFinal
 
+
+
+https://github.com/user-attachments/assets/74712c53-7f40-4ec7-bfaa-f99d8737aaf5
+
+
+
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
 
 ### Actividad 3 Shaders de superficie
 
